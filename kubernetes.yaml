@@ -16,7 +16,7 @@ spec:
       containers:
       - name: helloworld-container
         # tag::systemImage[]
-        image: image-registry.openshift-image-registry.svc:5000/nitudjoshi/helloworld:002
+        image: image-registry.openshift-image-registry.svc:5000/learning/helloworld:1.0
         # end::systemImage[]
         ports:
         - containerPort: 8080
