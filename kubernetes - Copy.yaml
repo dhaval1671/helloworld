@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-deployment
+  labels:
+    app: helloworld
+spec:
+  selector:
+    matchLabels:
+      app: helloworld
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+      - name: helloworld-container
+        # tag::systemImage[]
+        image: image-registry.openshift-image-registry.svc:5000/nitudjoshi/helloworld:6.0
+        # end::systemImage[]
+        ports:
+        - containerPort: 8080
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-service
+spec:
+  selector:
+    app: helloworld
+  ports:
+  - protocol: TCP
+    port: 8080
+---
+# tag::systemRoute[]
+apiVersion: v1
+kind: Route
+metadata:
+  name: helloworld-route
+spec:
+  to:
+    kind: Service
+    name: helloworld-service
+# end::systemRoute[]
