@@ -9,7 +9,7 @@ public class HelloWorldController {
 
 	@GetMapping(path = "/hello-world")
 	public String helloWorld() {
-		return "Hello World Version latest for docker 1.0";
+		return "Hello World Version latest for docker 2.0";
 	}
 
 	@GetMapping(path = "/hello-world-bean")
